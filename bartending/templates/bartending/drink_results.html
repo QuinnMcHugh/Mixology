@@ -1,0 +1,17 @@
+{% for result in results %}
+  <p>
+  <a href="{% url 'single_drink' result.id %}"><u>{{ result.name }}</u></a>
+  {% if result.ingredients != "" %}
+    <br>
+    <span><i>{{ result.ingredients }}</i></span>
+  {% endif %}
+  </p>
+{% endfor %}
+
+{% if results_limited %}
+  <p><i>Only showing first {{ results|length }} results...</i></p>
+{% endif %}
+
+{% if results|length == 0 %}
+  <p>No results found</p>
+{% endif %}

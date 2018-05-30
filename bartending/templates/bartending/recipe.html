@@ -1,0 +1,21 @@
+<div class="recipe">
+  <h3>{{ name }}</h3>
+    {% if username != None %}
+      {% if not favorite %}
+        <a href="{% url 'add_favorite' id %}">Add Favorite</a>
+      {% else %}
+        <a href="{% url 'delete_favorite' id %}">Remove Favorite</a>
+      {% endif %}
+    {% endif %}
+
+    {% for direction in directions %}
+      <p>
+        <h6>{{ direction.direction }}</h6>
+        <ul>
+          {% for child in direction.children %}
+            <li>{{ child }}</li>
+          {% endfor %}
+        </ul>
+      </p>
+    {% endfor %}
+</div>

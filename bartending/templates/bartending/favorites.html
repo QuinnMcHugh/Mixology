@@ -1,0 +1,24 @@
+<div class="tab-pane fade show active" id="v-pills-favorites" role="tabpanel" aria-labelledby="v-pills-favorites-tab">
+  <div class="col-sm-6">
+    <h3>Favorites</h3>
+    <div id="favorites">
+      {% if username == None %}
+        <p><i>You must be signed in to use this feature.</i></p>
+      {% else %}
+        {% for result in results %}
+          <p>
+            <a href="{% url 'single_drink' result.id %}"><u>{{ result.name }}</u></a>
+            {% if result.ingredients != "" %}
+              <br>
+              <span><i>{{ result.ingredients }}</i></span>
+            {% endif %}
+          </p>
+        {% endfor %}
+
+        {% if results|length == 0 %}
+          <p><i>You don't have any favorite drinks.</i></p>
+        {% endif %}
+      {% endif %}
+    </div>
+  </div>
+</div>

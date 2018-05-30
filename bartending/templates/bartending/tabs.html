@@ -1,0 +1,50 @@
+{% extends 'bartending/base.html' %}
+
+{% block content %}
+
+<div class="col-sm-2">
+  <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+    {# this templating system is limited...all the following code was just so the css class 'active' could be included for the variable indicated by 'active' #}
+    
+    {% if active == "all_drinks" or active == "drink" %}
+      <a class="nav-link active" id="v-pills-alldrinks-tab" href="{% url 'all_drinks' %}" role="tab" aria-controls="v-pills-alldrinks" aria-selected="true">All Drinks</a>
+    {% else %}
+      <a class="nav-link" id="v-pills-alldrinks-tab" href="{% url 'all_drinks' %}" role="tab" aria-controls="v-pills-alldrinks" aria-selected="false">All Drinks</a>
+    {% endif %}
+
+    {% if active == "my_bar" %}
+      <a class="nav-link active" id="v-pills-mybar-tab" href="{% url 'my_bar' %}" role="tab" aria-controls="v-pills-mybar" aria-selected="true">My Bar</a>
+    {% else %}
+      <a class="nav-link" id="v-pills-mybar-tab" href="{% url 'my_bar' %}" role="tab" aria-controls="v-pills-mybar" aria-selected="false">My Bar</a>
+    {% endif %}
+
+    {% if active == "favorites" %}
+      <a class="nav-link active" id="v-pills-favorites-tab" href="{% url 'favorites' %}" role="tab" aria-controls="v-pills-favorites" aria-selected="true">Favorites</a>
+    {% else %}
+      <a class="nav-link" id="v-pills-favorites-tab" href="{% url 'favorites' %}" role="tab" aria-controls="v-pills-favorites" aria-selected="false">Favorites</a>
+    {% endif %}
+
+    {% if active == "random" %}
+      <a class="nav-link active" id="v-pills-random-tab" href="{% url 'random' %}" role="tab" aria-controls="v-pills-random" aria-selected="true">Random</a>
+    {% else %}
+      <a class="nav-link" id="v-pills-random-tab" href="{% url 'random' %}" role="tab" aria-controls="v-pills-random" aria-selected="false">Random</a>
+    {% endif %}
+  </div>
+</div>
+<div class="col-sm-10">
+  <div class="tab-content" id="v-pills-tabContent">
+    {% if active == "all_drinks" %}
+      {% include 'bartending/all_drinks.html' %}
+    {% elif active == "my_bar" %}
+      {% include 'bartending/my_bar.html' %}
+    {% elif active == "favorites" %}
+      {% include 'bartending/favorites.html' %}
+    {% elif active == "random" %}
+      {% include 'bartending/random.html' %}
+    {% elif active == "drink" %}
+      {% include 'bartending/drink.html' %}
+    {% endif %}
+  </div>
+</div>
+
+{% endblock%}

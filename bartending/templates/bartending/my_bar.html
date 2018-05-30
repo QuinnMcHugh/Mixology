@@ -1,0 +1,47 @@
+{% load staticfiles %}
+
+<div class="tab-pane fade show active" id="v-pills-favorites" role="tabpanel" aria-labelledby="v-pills-favorites-tab">
+  <div class="col-sm-10">
+    <h3>My Bar</h3>
+      {% if username == None %}
+        <p><i>You must be signed in to use this feature.</i></p>
+      {% else %}
+        <div class="row">
+          {% for item in items %}
+            <div class="col-md-3">
+              <div class="my-bar-item">
+                <span class="name">{{ item.name }}</span>
+                <span class="delete-x"><a href="{% url 'remove_from_bar' item.id %}">X</a></span>
+              </div>
+            </div>
+          {% endfor %}
+        </div>
+        
+        <br>
+        <h3>Add Ingredients</h3>
+        <div class="row">
+          <div class="col-md-6">
+            <div class="form-group">
+              <select class="form-control" id="add_ingredient">
+                {% for elem in not_in_bar %}
+                  <option>{{ elem.name }}</option>
+                {% endfor %}
+              </select>
+            </div>
+            <button id="addToMyBar" type="button" class="btn btn-primary">Add to MyBar</button>
+          </div>
+        </div>
+
+        <script src="{% static 'js/mybar.js' %}"></script>
+        
+        <br>
+        <h3>Possible Drinks</h3>
+        <p><i>Shows all drinks which can be made with the ingredients you have listed above.</i></p>
+        <button id="calculateDrinks" type="button" class="btn btn-primary">Calculate</button>
+        <div id="calculationResults" class="col-sm-7">
+          
+        </div>
+      {% endif %}
+    </div>
+  </div>
+</div>
